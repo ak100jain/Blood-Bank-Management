@@ -3,7 +3,7 @@ const authMiddelware = require("../middlewares/authMiddelware");
 const {
   createInventoryController,
   getInventoryController,
-  getDonarsController,
+  getDonorsController,
   getHospitalController,
   getOrgnaisationController,
   getOrgnaisationForHospitalController,
@@ -33,8 +33,8 @@ router.post(
   getInventoryHospitalController
 );
 
-//GET DONAR RECORDS
-router.get("/get-donars", authMiddelware, getDonarsController);
+//GET DONOR RECORDS
+router.get("/get-donors", authMiddelware, getDonorsController);
 
 //GET HOSPITAL RECORDS
 router.get("/get-hospitals", authMiddelware, getHospitalController);
