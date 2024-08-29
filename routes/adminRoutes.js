@@ -5,6 +5,7 @@ const {
   getHospitalListController,
   getOrgListController,
   deleteDonorController,
+  getRegisterNumber,
 } = require("../controllers/adminController");
 const adminMiddleware = require("../middlewares/adminMiddleware");
 
@@ -29,6 +30,9 @@ router.get(
 );
 //GET || ORG LIST
 router.get("/org-list", authMiddelware, adminMiddleware, getOrgListController);
+
+//GET || REGISTERED USER
+router.get("/register-no",authMiddelware,adminMiddleware, getRegisterNumber);
 // ==========================
 
 // DELETE DONoR || GET
@@ -38,6 +42,8 @@ router.delete(
   adminMiddleware,
   deleteDonorController
 );
+
+
 
 //EXPORT
 module.exports = router;

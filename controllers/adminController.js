@@ -66,6 +66,43 @@ const getOrgListController = async (req, res) => {
     });
   }
 };
+//GET REGISTERATION NUMBER
+const getRegisterNumber = async (req,res)=>{
+  try{
+    const data = await userModel.aggregate([
+      {
+        $group: {
+          _id: "$role",
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          role: "$_id",
+          count: 1
+        }
+      }
+    ]);
+    return  res.status(200).send({
+      data,
+      success:true,
+      message:"successfully retrieved the registered user"
+    });
+
+    //console.log(result);
+    
+  }
+  catch(error){
+    console.log(error);
+    return res.status(500).send(
+      {
+        success:false,
+        message:"Error retrieving registered user",
+      }
+    )
+  }
+};
 // =======================================
 
 //DELETE DONOR
@@ -92,4 +129,5 @@ module.exports = {
   getHospitalListController,
   getOrgListController,
   deleteDonorController,
+  getRegisterNumber,
 };
